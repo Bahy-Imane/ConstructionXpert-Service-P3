@@ -38,9 +38,7 @@ public class TasksServiceTests {
 
     @Test
     void getAllTasksTest() {
-
         List<Task> expectedTasks = Arrays.asList(new Task(), new Task());
-
         when(taskRepo.findAll()).thenReturn(expectedTasks);
         List<Task> tasks = taskService.getAllTasks();
         assertEquals(expectedTasks, tasks);
