@@ -1,0 +1,26 @@
+<form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+  <div>
+    <label >Project Name:</label>
+    <input formControlName="projectName" type="text" required>
+  </div>
+
+  <div>
+    <label >Project Description:</label>
+    <textarea formControlName="projectDescription" required></textarea>
+
+  </div>
+
+  <div>
+    <label >Start Date:</label>
+    <input formControlName="projectStartDate" type="date" required>
+
+  </div>
+
+  <div>
+    <label >End Date:</label>
+    <input formControlName="projectEndDate" type="date" required>
+
+  </div>
+
+  <button type="submit">Submit</button>
+</form>

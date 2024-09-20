@@ -1,0 +1,54 @@
+.login-card {
+  max-width: 400px;
+  margin: 100px auto;
+  padding: 30px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+.full-width {
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.mat-form-field {
+  background-color: white;
+  border-radius: 10px;
+}
+
+.mat-form-field-wrapper {
+  padding-left: 10px;
+}
+
+.mat-icon {
+  color: #616161;
+}
+
+.button-wrapper {
+  margin-top: 20px;
+}
+
+mat-card-title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+mat-raised-button {
+  width: 100%;
+  padding: 10px;
+}
+
+.error-message {
+  color: red;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.error-message mat-icon {
+  margin-right: 5px;
+}

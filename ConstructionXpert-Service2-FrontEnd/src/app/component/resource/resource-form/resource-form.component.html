@@ -1,0 +1,17 @@
+<div class="container">
+  <form [formGroup]="resourceForm" (ngSubmit)="onSubmit()">
+    <label>Resource Name:</label>
+    <input formControlName="resourceName" type="text"><br><br>
+    <label>Resource Type:</label>
+    <input formControlName="resourceType" type="text"><br><br>
+    <label>Resource Quantity:</label>
+    <input formControlName="resourceQuantity" type="number"><br><br>
+    <label>Resource Provider:</label>
+    <input formControlName="resourceProvider" type="text"><br><br>
+    <label>Task:</label>
+    <select formControlName="taskId">
+      <option *ngFor="let task of tasks" [value]="task.taskId">{{ task.taskTitle }}</option>
+    </select><br><br>
+    <button type="submit">Submit</button>
+  </form>
+</div>

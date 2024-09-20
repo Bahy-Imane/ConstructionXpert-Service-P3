@@ -1,0 +1,12 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/auth/**  # Rediriger les requêtes qui commencent par /api/auth/ vers USER-SERVICE
+
+      discovery:
+        locator:
+          enabled: true  # Active la découverte des services via Eureka

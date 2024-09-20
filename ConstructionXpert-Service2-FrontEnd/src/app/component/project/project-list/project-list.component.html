@@ -1,0 +1,29 @@
+
+<div class="container">
+  <button (click)="addProject()">add</button>
+  <table>
+    <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let project of projects">
+      <td>{{ project.projectId }}</td>
+      <td>{{ project.projectName }}</td>
+      <td>{{ project.projectDescription }}</td>
+      <td>{{ project.projectStartDate | date}}</td>
+      <td>{{ project.projectEndDate | date}}</td>
+      <td>
+        <button (click)="editProject(project.projectId)">Edit</button>
+        <button (click)="deleteProject(project.projectId)">Delete</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
