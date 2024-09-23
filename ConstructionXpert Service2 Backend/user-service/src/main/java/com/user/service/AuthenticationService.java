@@ -80,25 +80,4 @@ public class AuthenticationService {
     }
 
 
-
-//    public LoginResponse authenticate(LoginUserDto input) {
-//        Authentication authentication =  authenticationManager.authenticate(
-//                new UsernamePasswordAuthenticationToken(
-//                        input.getUserNameOrEmail(),
-//                        input.getPassword()
-//                )
-//        );
-//        if (authentication.isAuthenticated()) {
-//            User user = userRepository.findByUsernameOrEmail(input.getUserNameOrEmail(), input.getUserNameOrEmail());
-//            String token = jwtService.generateToken(user,user.getRole());
-//            return LoginResponse.builder()
-//                    .token(token)
-//                    .role(user.getRole())
-//                    .build();
-//        }
-//        else {
-//            throw new UsernameNotFoundException("Invalid user request.");
-//        }
-//
-//    }
 }
