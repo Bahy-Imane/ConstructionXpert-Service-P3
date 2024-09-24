@@ -1,0 +1,108 @@
+pipeline {
+    agent any
+
+    tools {
+        maven 'mvn'
+    }
+
+    environment {
+        DOCKER_HUB_REPO = 'imanebahy/construction_xpert_service'
+        DOCKER_IMAGE = 'construction_xpert_service'
+        DOCKER_COMPOSE_FILE = 'Docker-compose.yaml'
+        DOCKER_CREDENTIALS_ID = 'docker-credentials-id'
+        SONARQUBE = 'SonarQubeServer'
+        SONARQUBE_TOKEN = credentials('SonarQube')
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Bahy-Imane/ConstructionXpert-Service-P3.git'
+            }
+        }
+
+        stage('Build and Test') {
+            steps {
+                dir('ConstructionXpert Service2 Backend') {
+                    bat 'mvn clean install'
+                    bat 'mvn test'
+                }
+            }
+        }
+
+        stage('SonarQube Analysis') {
+            steps {
+                dir('ConstructionXpert Service2 Backend') {
+                    withSonarQubeEnv(SONARQUBE) {
+                        bat "mvn sonar:sonar -Dsonar.token=${SONARQUBE_TOKEN}"
+                    }
+                }
+            }
+        }
+
+                stage('Quality Gate Check') {
+                    steps {
+                        timeout(time: 5, unit: 'MINUTES') {
+                            waitForQualityGate abortPipeline: true
+                        }
+                    }
+                }
+
+stage('Build Docker Images') {
+            steps {
+                script {
+                    def services = ['Eureka-Server', 'gateway-service', 'Projects Manager', 'Ressources Manager', 'Tasks Manager', 'user-service']
+
+                    dir('ConstructionXpert Service2 Backend') {
+                        services.each { service ->
+                            dir(service) {
+                                bat "docker build -t construction_xpert_service-${service} ."
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+     stage('Tag and Push Docker Images') {
+            steps {
+                script {
+                    def services = ['Eureka-Server', 'gateway-service', 'Projects Manager', 'Ressources Manager', 'Tasks Manager', 'user-service']
+
+                    docker.withRegistry("https://index.docker.io/v1/", 'docker-credentials-id') {
+                        services.each { service ->
+                            def imageName = "${DOCKER_HUB_REPO}:${service}"
+                            bat """
+                                docker tag ConstructionXpert Service2 Backend-${service}:latest ${imageName}
+                                docker push ${imageName}
+                            """
+                        }
+                    }
+                }
+            }
+        }
+        stage('Run Docker Compose') {
+            steps {
+                script {
+                    dir('ConstructionXpert Service2 Backend') {
+                        bat 'docker-compose up -d'
+                    }
+                }
+            }
+        }
+    }
+
+
+
+    post {
+        always {
+            cleanWs()
+        }
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
+}
