@@ -4,6 +4,8 @@ import com.tasks.manager.feignClient.ProjectClient;
 import com.tasks.manager.model.Task;
 import com.tasks.manager.repository.TaskRepository;
 import feign.FeignException;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -58,6 +60,10 @@ public class TaskService {
 
     public List<Task> getAllTasksWithSorting(String field) {
         return taskRepository.findAll(Sort.by(field).descending());
+    }
+
+    public Page<Task> getAllTasksWithPagination(int offset, int pageSize) {
+        return taskRepository.findAll(PageRequest.of(offset, pageSize));
     }
 
 }

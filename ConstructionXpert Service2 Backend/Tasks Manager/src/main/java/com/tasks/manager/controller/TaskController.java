@@ -3,6 +3,7 @@ package com.tasks.manager.controller;
 import com.tasks.manager.model.Task;
 import com.tasks.manager.service.TaskService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -56,6 +57,12 @@ public class TaskController {
     @GetMapping("/sorting/{field}")
     public ResponseEntity<List<Task>> getTasksWithSorting(@PathVariable("field") String field) {
         List<Task> tasks = taskService.getAllTasksWithSorting(field);
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    }
+
+    @GetMapping("/pagination/{offset}/{pageSize}")
+    public ResponseEntity<Page<Task>> getTasksWithPagination(@PathVariable("offset") int offset,@PathVariable("pageSize") int pageSize) {
+        Page<Task> tasks = taskService.getAllTasksWithPagination(offset, pageSize);
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
 }
