@@ -4,7 +4,7 @@ import com.tasks.manager.feignClient.ProjectClient;
 import com.tasks.manager.model.Task;
 import com.tasks.manager.repository.TaskRepository;
 import feign.FeignException;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,11 +12,14 @@ import java.util.List;
 @Service
 public class TaskService {
 
-    @Autowired
-    private TaskRepository taskRepository;
+    private final TaskRepository taskRepository;
 
-    @Autowired
-    private ProjectClient projectClient;
+    private final ProjectClient projectClient;
+
+    public TaskService(TaskRepository taskRepository, ProjectClient projectClient) {
+        this.taskRepository = taskRepository;
+        this.projectClient = projectClient;
+    }
 
     public List<Task> getAllTasks() {
         return taskRepository.findAll();
@@ -52,4 +55,9 @@ public class TaskService {
     public void deleteTask(Long id) {
         taskRepository.deleteById(id);
     }
+
+    public List<Task> getAllTasksWithSorting(String field) {
+        return taskRepository.findAll(Sort.by(field).descending());
+    }
+
 }

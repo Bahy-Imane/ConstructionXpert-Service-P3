@@ -52,4 +52,10 @@ public class TaskController {
         taskService.deleteTask(taskId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/sorting/{field}")
+    public ResponseEntity<List<Task>> getTasksWithSorting(@PathVariable("field") String field) {
+        List<Task> tasks = taskService.getAllTasksWithSorting(field);
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    }
 }
