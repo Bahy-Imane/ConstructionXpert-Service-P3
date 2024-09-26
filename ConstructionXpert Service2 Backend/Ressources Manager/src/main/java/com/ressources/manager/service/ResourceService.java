@@ -3,7 +3,6 @@ package com.ressources.manager.service;
 import com.ressources.manager.feignClient.TaskClient;
 import com.ressources.manager.model.Resource;
 import com.ressources.manager.repository.ResourceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
@@ -14,11 +13,14 @@ import java.util.List;
 @Service
 public class ResourceService {
 
-    @Autowired
-    private ResourceRepository resourceRepository;
+    private final ResourceRepository resourceRepository;
 
-    @Autowired
-    private TaskClient taskClient;
+    private final TaskClient taskClient;
+
+    public ResourceService(ResourceRepository resourceRepository, TaskClient taskClient) {
+        this.resourceRepository = resourceRepository;
+        this.taskClient = taskClient;
+    }
 
     public List<Resource> getAllResources() {
         return resourceRepository.findAll();
@@ -32,11 +34,11 @@ public class ResourceService {
         if (taskClient.getTaskById(resource.getTaskId()) != null) {
             return resourceRepository.save(resource);
         }
-        throw new RuntimeException("Tâche non trouvée");
+        throw new RuntimeException("Task not found");
     }
 
     public Resource updateResource(Long resourceId, Resource resource) {
-        Resource existingResource = resourceRepository.findById(resourceId).orElseThrow(() -> new RuntimeException("Ressource non trouvée"));
+        Resource existingResource = resourceRepository.findById(resourceId).orElseThrow(() -> new RuntimeException("Resource not found"));
         existingResource.setResourceName(resource.getResourceName());
         existingResource.setResourceType(resource.getResourceType());
         existingResource.setResourceQuantity(resource.getResourceQuantity());
@@ -56,7 +58,10 @@ public class ResourceService {
     }
 
     public Page<Resource> findResourcesWithPagination(int offset, int pageSize){
-        Page<Resource> resources = resourceRepository.findAll(PageRequest.of(offset, pageSize));
-        return resources;
+        return resourceRepository.findAll(PageRequest.of(offset, pageSize));
+    }
+
+    public Page<Resource> findResourcesWithSortingAndPagination(String field, int offset, int pageSize){
+        return resourceRepository.findAll(PageRequest.of(offset, pageSize, Sort.by(field).descending()));
     }
 }

@@ -63,4 +63,10 @@ public class ResourceController {
         Page<Resource> resources = resourceService.findResourcesWithPagination(offset, pageSize);
         return new ResponseEntity<>(resources, HttpStatus.OK);
     }
+
+    @GetMapping("/pagination/{offset}/{pageSize}/{field}")
+    public ResponseEntity<Page<Resource>> getResourceWithSortingAndPagination(@PathVariable("offset") int offset, @PathVariable("pageSize") int pageSize,@PathVariable("field") String field){
+        Page<Resource> resources = resourceService.findResourcesWithSortingAndPagination(field,offset,pageSize);
+        return new ResponseEntity<>(resources, HttpStatus.OK);
+    }
 }
