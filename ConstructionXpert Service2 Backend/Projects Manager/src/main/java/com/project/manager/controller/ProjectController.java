@@ -3,6 +3,7 @@ package com.project.manager.controller;
 import com.project.manager.model.Project;
 import com.project.manager.service.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,5 +46,22 @@ public class ProjectController {
     public ResponseEntity<Void> deleteProject(@RequestParam Long projectId) {
         projectService.deleteProject(projectId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
+
+    @GetMapping("/sorting/{field}")
+    public ResponseEntity<List<Project>> getAllWithSorting(@PathVariable String field) {
+        List<Project> projects = projectService.findProjectsWithSorting(field);
+        return new ResponseEntity<>(projects, HttpStatus.OK);
+    }
+    @GetMapping("/pagination/{offset}/{pageSize}")
+    public ResponseEntity<Page<Project>> getAllWithPagination(@PathVariable int offset, @PathVariable int pageSize) {
+        Page<Project> projects = projectService.findProjectsWithPagination(offset, pageSize);
+        return new ResponseEntity<>(projects, HttpStatus.OK);
+    }
+
+    @GetMapping("/paginationAndSorting/{offset}/{pageSize}/{field}")
+    public ResponseEntity<Page<Project>> getAllWithPaginationAndSorting(@PathVariable int offset, @PathVariable int pageSize, @PathVariable String field) {
+        Page<Project> projects = projectService.findProjectsWithPaginationAndSorting(offset, pageSize,field);
+        return new ResponseEntity<>(projects, HttpStatus.OK);
     }
 }
