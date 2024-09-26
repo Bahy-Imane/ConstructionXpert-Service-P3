@@ -3,6 +3,7 @@ package com.ressources.manager.controller;
 import com.ressources.manager.model.Resource;
 import com.ressources.manager.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -54,6 +55,12 @@ public class ResourceController {
     @GetMapping("/sorting/{field}")
     public ResponseEntity<List<Resource>> getResourcesWithSorting(@PathVariable("field") String field){
         List<Resource> resources = resourceService.findResourcesWithSorting(field);
+        return new ResponseEntity<>(resources, HttpStatus.OK);
+    }
+
+    @GetMapping("/pagination/{offset}/{pageSize}")
+    public ResponseEntity<Page<Resource>> getResourceWithPagination(@PathVariable("offset") int offset, @PathVariable("pageSize") int pageSize){
+        Page<Resource> resources = resourceService.findResourcesWithPagination(offset, pageSize);
         return new ResponseEntity<>(resources, HttpStatus.OK);
     }
 }

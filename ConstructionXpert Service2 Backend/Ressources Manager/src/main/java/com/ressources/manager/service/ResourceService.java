@@ -4,6 +4,8 @@ import com.ressources.manager.feignClient.TaskClient;
 import com.ressources.manager.model.Resource;
 import com.ressources.manager.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -51,5 +53,10 @@ public class ResourceService {
 
     public List<Resource> findResourcesWithSorting(String field){
         return resourceRepository.findAll(Sort.by(field).descending());
+    }
+
+    public Page<Resource> findResourcesWithPagination(int offset, int pageSize){
+        Page<Resource> resources = resourceRepository.findAll(PageRequest.of(offset, pageSize));
+        return resources;
     }
 }
