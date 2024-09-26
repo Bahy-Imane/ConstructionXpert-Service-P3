@@ -66,4 +66,8 @@ public class TaskService {
         return taskRepository.findAll(PageRequest.of(offset, pageSize));
     }
 
+    public Page<Task> getAllTasksWithPaginationAndSorting(int offset, int pageSize,String field) {
+        return taskRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field).descending()));
+    }
+
 }

@@ -65,4 +65,10 @@ public class TaskController {
         Page<Task> tasks = taskService.getAllTasksWithPagination(offset, pageSize);
         return new ResponseEntity<>(tasks, HttpStatus.OK);
     }
+
+    @GetMapping("/paginationAndSorting/{offset}/{pageSize}/{field}")
+    public ResponseEntity<Page<Task>> getTasksWithPaginationAndSoring(@PathVariable("offset") int offset,@PathVariable("pageSize") int pageSize,@PathVariable("field") String field) {
+        Page<Task> tasks = taskService.getAllTasksWithPaginationAndSorting( offset,  pageSize, field);
+        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    }
 }
