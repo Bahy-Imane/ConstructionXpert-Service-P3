@@ -59,7 +59,7 @@ services:
     ports:
       - "8082:8082"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:mysql://taskdb:3306/task_manager_db?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
+      - SPRING_DATASOURCE_URL=jdbc:mysql://taskdb:3306/tasks_manager?createDatabaseIfNotExist=true&allowPublicKeyRetrieval=true&useSSL=false
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=
       - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://eureka-server:8761/eureka/
@@ -127,10 +127,10 @@ services:
     image: "mysql:latest"
     restart: always
     environment:
-      MYSQL_DATABASE: task_manager_db
+      MYSQL_DATABASE: tasks_manager
       MYSQL_ALLOW_EMPTY_PASSWORD: true
     ports:
-      - "3307:3309"
+      - "3306:3306"
     volumes:
       - task-db:/var/lib/mysql
     networks:
