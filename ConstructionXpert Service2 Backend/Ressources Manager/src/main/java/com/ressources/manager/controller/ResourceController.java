@@ -50,4 +50,10 @@ public class ResourceController {
         resourceService.deleteResource(resourceId);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/sorting/{field}")
+    public ResponseEntity<List<Resource>> getResourcesWithSorting(@PathVariable("field") String field){
+        List<Resource> resources = resourceService.findResourcesWithSorting(field);
+        return new ResponseEntity<>(resources, HttpStatus.OK);
+    }
 }

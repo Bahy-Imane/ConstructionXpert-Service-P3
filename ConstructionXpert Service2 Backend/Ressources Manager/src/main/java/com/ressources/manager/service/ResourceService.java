@@ -4,6 +4,7 @@ import com.ressources.manager.feignClient.TaskClient;
 import com.ressources.manager.model.Resource;
 import com.ressources.manager.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -46,5 +47,9 @@ public class ResourceService {
     }
     public void deleteResource(Long resourceId) {
         resourceRepository.deleteById(resourceId);
+    }
+
+    public List<Resource> findResourcesWithSorting(String field){
+        return resourceRepository.findAll(Sort.by(field).descending());
     }
 }
