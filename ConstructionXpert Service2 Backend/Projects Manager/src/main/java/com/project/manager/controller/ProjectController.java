@@ -61,7 +61,7 @@ public class ProjectController {
 
     @GetMapping("/paginationAndSorting/{offset}/{pageSize}/{field}")
     public ResponseEntity<Page<Project>> getAllWithPaginationAndSorting(@PathVariable int offset, @PathVariable int pageSize, @PathVariable String field) {
-        Page<Project> projects = projectService.findProjectsWithPaginationAndSorting(offset, pageSize,field);
+        Page<Project> projects =  projectService.findProjectsWithPaginationAndSorting(offset, pageSize,field);
         return new ResponseEntity<>(projects, HttpStatus.OK);
     }
 }
