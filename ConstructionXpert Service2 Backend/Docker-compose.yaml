@@ -129,6 +129,8 @@ services:
     environment:
       MYSQL_DATABASE: task_manager_db
       MYSQL_ALLOW_EMPTY_PASSWORD: true
+    ports:
+      - "3307:3309"
     volumes:
       - task-db:/var/lib/mysql
     networks:
