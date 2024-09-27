@@ -46,7 +46,7 @@ export class SignUpComponent { // Corrected the name to match the export
     if (this.signupForm.valid) {
       const userDto = this.signupForm.value;
 
-      this.authService.CostumerSignUp(userDto).subscribe({
+      this.authService.SignUp.subscribe({
         next: (response) => {
           this.success = true;
           this.router.navigate(['/login']);
