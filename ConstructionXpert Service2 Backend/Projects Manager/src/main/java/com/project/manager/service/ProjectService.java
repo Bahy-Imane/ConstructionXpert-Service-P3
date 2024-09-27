@@ -3,6 +3,9 @@ package com.project.manager.service;
 import com.project.manager.model.Project;
 import com.project.manager.repository.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -51,5 +54,19 @@ public class ProjectService {
 
     public void deleteProject(Long projectId) {
         projectRepository.deleteById(projectId);
+    }
+
+    public List<Project> findProjectsWithSorting(String field){
+        return projectRepository.findAll(Sort.by(Sort.Direction.DESC, field));
+    }
+
+    public Page<Project> findProjectsWithPagination(int offset, int pageSize){
+        Page<Project> projects = projectRepository.findAll(PageRequest.of(offset, pageSize));
+        return projects;
+    }
+
+    public Page<Project> findProjectsWithPaginationAndSorting(int offset, int pageSize, String field){
+        Page<Project> projects = projectRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(Sort.Direction.DESC, field)));
+        return projects;
     }
 }
