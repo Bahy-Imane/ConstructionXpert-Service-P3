@@ -1,0 +1,130 @@
+.task-list-container {
+  min-height: 92vh;
+  background: linear-gradient(135deg, #f5f5f5 0%, #f1f1f1 100%);
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+  flex-direction: column;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #ff9966;
+}
+
+.task-table {
+  width: 100%;
+  max-width: 1000px;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.task-header {
+  display: flex;
+  background-color: #ff9966;
+  color: #ffffff;
+  font-weight: bold;
+}
+
+.header-item {
+  flex: 1;
+  padding: 1rem;
+  text-align: center;
+  &:hover {
+    cursor: ns-resize;
+    background-color: rgba(255, 114, 0, 0.55);
+  }
+}
+
+.task-row {
+  display: flex;
+  border-bottom: 1px solid #e0e0e0;
+
+  &:hover {
+    background-color: #f9f9f9;
+  }
+}
+
+.row-item {
+  flex: 1;
+  padding: 1rem 0;
+  text-align: center;
+}
+
+.row-item:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  margin: 0 0.5rem;
+}
+
+.bar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1000px;
+}
+
+
+.search-input {
+  padding: 10px 15px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 25px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  margin-bottom: 10px;
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 2px 10px rgba(255, 153, 102, 0.3);
+  }
+
+  &::placeholder {
+    color: #aaa;
+  }
+}
+
+button[mat-button] {
+  margin-left: 15px;
+  border-radius: 25px;
+  padding: 5px 15px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+}
+
+
+@media (max-width: 959px) {
+  .task-list-container {
+    padding: 1rem;
+
+    .task-table {
+      max-width: 100%;
+    }
+  }
+}
+
+@media (max-width: 599px) {
+  .task-list-container {
+    padding: 1rem;
+
+    .task-table {
+      padding: 1rem;
+    }
+  }
+}

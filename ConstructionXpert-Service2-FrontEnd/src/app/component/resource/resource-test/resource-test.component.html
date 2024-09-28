@@ -1,0 +1,63 @@
+<div class="task-list-container">
+  <h2 class="title">Liste des Projets</h2>
+  <div class="bar">
+    <input type="text" [(ngModel)]="searchText" placeholder="Rechercher un Resource" class="search-input">
+    <button mat-button color="primary" (click)="openDialog()">
+      <mat-icon>add</mat-icon> Ajouter un Resource </button>
+  </div>
+  <div class="task-table">
+    <div class="task-header">
+      <div class="header-item" (click)="sort('resourceName')">Nom du Projet
+        <span class="sort-icon" *ngIf="currentSortField === 'resourceName'">
+      <i class="arrow up" *ngIf="currentSortDirection === 'desc'">↑</i>
+      <i class="arrow down" *ngIf="currentSortDirection === 'asc'">↓</i>
+    </span></div>
+      <div class="header-item" (click)="sort('resourceQuantity')">Description
+        <span class="sort-icon" *ngIf="currentSortField === 'resourceQuantity'">
+      <i class="arrow up" *ngIf="currentSortDirection === 'desc'">↑</i>
+      <i class="arrow down" *ngIf="currentSortDirection === 'asc'">↓</i>
+    </span></div>
+      <div class="header-item" (click)="sort('resourceProvider')">Date de Début
+        <span class="sort-icon" *ngIf="currentSortField === 'resourceProvider'">
+      <i class="arrow up" *ngIf="currentSortDirection === 'desc'">↑</i>
+      <i class="arrow down" *ngIf="currentSortDirection === 'asc'">↓</i>
+    </span></div>
+      <div class="header-item" (click)="sort('resourceType')">Date d'Échéance
+        <span class="sort-icon" *ngIf="currentSortField === 'resourceType'">
+      <i class="arrow up" *ngIf="currentSortDirection === 'desc'">↑</i>
+      <i class="arrow down" *ngIf="currentSortDirection === 'asc'">↓</i>
+    </span></div>
+<!--      <div class="header-item" (click)="sort('budget')">Budget-->
+<!--        <span class="sort-icon" *ngIf="currentSortField === 'budget'">-->
+<!--      <i class="arrow up" *ngIf="currentSortDirection === 'desc'">↑</i>-->
+<!--      <i class="arrow down" *ngIf="currentSortDirection === 'asc'">↓</i>-->
+<!--    </span></div>-->
+      <div class="header-item">Actions</div>
+    </div>
+
+
+    <div class="task-row" *ngFor="let project of filteredProjects()">
+      <div class="row-item">{{ project.resourceName}}</div>
+      <div class="row-item description">{{ project.resourceQuantity }}</div>
+      <div class="row-item">{{ project.resourceType }}</div>
+      <div class="row-item">{{ project.resourceProvider }}</div>
+
+<!--      <div class="row-item">-->
+<!--        <button mat-button color="primary" (click)="editProject(project)">-->
+<!--          <mat-icon>edit_not</mat-icon>-->
+<!--        </button>-->
+<!--        <button mat-button color="warn" (click)="deleteProject(project)">-->
+<!--          <mat-icon>delete_forever</mat-icon>-->
+<!--        </button>-->
+<!--      </div>-->
+    </div>
+    <div class="row-item">
+      <mat-paginator [length]="totalResource"
+                     [pageSize]="pageSize"
+                     [pageSizeOptions]="[3, 5, 10, 25, 50, 100]"
+                     (page)="onPageChange($event)"
+                     aria-label="Select page">
+      </mat-paginator>
+    </div>
+  </div>
+</div>
