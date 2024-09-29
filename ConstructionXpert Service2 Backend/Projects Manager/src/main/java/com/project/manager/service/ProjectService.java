@@ -56,17 +56,16 @@ public class ProjectService {
         projectRepository.deleteById(projectId);
     }
 
-    public List<Project> findProjectsWithSorting(String field){
-        return projectRepository.findAll(Sort.by(Sort.Direction.DESC, field));
+
+    public List<Project> findProjectWithSorting(String field){
+        return projectRepository.findAll(Sort.by(field).descending());
     }
 
-    public Page<Project> findProjectsWithPagination(int offset, int pageSize){
-        Page<Project> projects = projectRepository.findAll(PageRequest.of(offset, pageSize));
-        return projects;
+    public Page<Project> findProjectWithPagination(int offset, int pageSize){
+        return projectRepository.findAll(PageRequest.of(offset, pageSize));
     }
 
-    public Page<Project> findProjectsWithPaginationAndSorting(int offset, int pageSize, String field){
-        Page<Project> projects = projectRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(Sort.Direction.DESC, field)));
-        return projects;
+    public Page<Project> findProjectWithPaginationAndSorting(String field, int offset, int pageSize){
+        return projectRepository.findAll(PageRequest.of(offset, pageSize, Sort.by(field).descending()));
     }
 }

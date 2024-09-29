@@ -1,24 +1,115 @@
-
-.signup-card {
-  max-width: 400px;
-  margin: 100px auto;
-  padding: 20px;
+/* Container principal */
+.signup-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f4f4f9;
+  padding: 2rem;
 }
 
-mat-form-field {
+/* Contenu contenant le formulaire et l'image */
+.signup-content {
+  display: flex;
+  justify-content: space-around; /* Espace autour de l'image et du formulaire */
+  background-color: white;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  max-width: 900px;
   width: 100%;
 }
 
-mat-icon {
-  color: rgba(0, 0, 0, 0.54);
+/* Image du formulaire */
+.signup-image {
+  width: 45%; /* Largeur de l'image */
 }
 
-.error-message {
-  color: red;
-  margin: 10px 0;
+.signup-image img {
+  width: 100%; /* Image pleine largeur */
+  height: auto;
+  object-fit: cover;
 }
 
+/* Formulaire */
+.signup-form {
+  width: 45%; /* Largeur du formulaire */
+  padding: 2rem;
+}
+
+.signup-form h2 {
+  text-align: center;
+  font-size: 24px;
+  color: #3f51b5;
+  margin-bottom: 1.5rem;
+}
+
+/* Groupe de champs du formulaire */
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 1rem;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+  border-color: #3f51b5; /* Changement de la couleur au focus */
+}
+
+/* Bouton de soumission */
 button {
-  margin-top: 20px;
-  width: 100%; 
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #303f9f;
+}
+
+button:disabled {
+  background-color: #9e9e9e;
+  cursor: not-allowed;
+}
+
+/* Messages d'erreur */
+.error-message {
+  color: #e53935;
+  font-size: 0.875rem;
+}
+
+/* Responsive pour petits écrans */
+@media (max-width: 768px) {
+  .signup-content {
+    flex-direction: column; /* Aligne en colonne pour les petits écrans */
+  }
+
+  .signup-image,
+  .signup-form {
+    width: 100%; /* Formulaire et image prennent 100% sur mobile */
+  }
+
+  .signup-image img {
+    height: 200px; /* Hauteur réduite de l'image sur mobile */
+  }
 }

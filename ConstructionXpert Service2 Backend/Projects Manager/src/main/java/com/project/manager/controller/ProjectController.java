@@ -50,18 +50,18 @@ public class ProjectController {
 
     @GetMapping("/sorting/{field}")
     public ResponseEntity<List<Project>> getAllWithSorting(@PathVariable String field) {
-        List<Project> projects = projectService.findProjectsWithSorting(field);
+        List<Project> projects = projectService.findProjectWithSorting(field);
         return new ResponseEntity<>(projects, HttpStatus.OK);
     }
     @GetMapping("/pagination/{offset}/{pageSize}")
     public ResponseEntity<Page<Project>> getAllWithPagination(@PathVariable int offset, @PathVariable int pageSize) {
-        Page<Project> projects = projectService.findProjectsWithPagination(offset, pageSize);
+        Page<Project> projects = projectService.findProjectWithPagination(offset, pageSize);
         return new ResponseEntity<>(projects, HttpStatus.OK);
     }
 
     @GetMapping("/paginationAndSorting/{offset}/{pageSize}/{field}")
     public ResponseEntity<Page<Project>> getAllWithPaginationAndSorting(@PathVariable int offset, @PathVariable int pageSize, @PathVariable String field) {
-        Page<Project> projects =  projectService.findProjectsWithPaginationAndSorting(offset, pageSize,field);
+        Page<Project> projects =  projectService.findProjectWithPaginationAndSorting(field, pageSize,offset);
         return new ResponseEntity<>(projects, HttpStatus.OK);
     }
 }

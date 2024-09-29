@@ -20,7 +20,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
 
-  CostumerSignUp(customerDTO: CustomerDto): Observable<User> {
+  SignUp(customerDTO: CustomerDto): Observable<User> {
     return this.http.post<User>(`${this.baseUrl}/signup`, customerDTO);
   }
 
