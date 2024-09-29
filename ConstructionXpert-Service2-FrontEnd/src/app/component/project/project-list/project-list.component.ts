@@ -3,13 +3,34 @@ import {Project} from "../../../core/model/project.model";
 import {ProjectService} from "../../../core/services/project-service";
 import {Router} from "@angular/router";
 import {DatePipe, NgForOf} from "@angular/common";
+import {MatButton} from "@angular/material/button";
+import {
+  MatCell,
+  MatCellDef,
+  MatColumnDef,
+  MatHeaderCell,
+  MatHeaderCellDef,
+  MatHeaderRow, MatHeaderRowDef, MatRow, MatRowDef,
+  MatTable
+} from "@angular/material/table";
 
 @Component({
   selector: 'app-project-list',
   standalone: true,
   imports: [
     DatePipe,
-    NgForOf
+    NgForOf,
+    MatButton,
+    MatTable,
+    MatColumnDef,
+    MatHeaderCell,
+    MatCell,
+    MatCellDef,
+    MatHeaderCellDef,
+    MatHeaderRow,
+    MatRow,
+    MatHeaderRowDef,
+    MatRowDef
   ],
   templateUrl: './project-list.component.html',
   styleUrl: './project-list.component.css'

@@ -1,26 +1,49 @@
+<!-- Add Font Awesome CDN in your index.html or include it in your project -->
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"> -->
+<div class="cn">
 <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
-  <div>
-    <label >Project Name:</label>
-    <input formControlName="projectName" type="text" required>
+  <div class="form-group">
+    <label for="projectName">Project Name:</label>
+    <div class="input-container">
+      <i class="fas fa-project-diagram"></i>
+      <input id="projectName" formControlName="projectName" type="text" required>
+    </div>
   </div>
 
-  <div>
-    <label >Project Description:</label>
-    <textarea formControlName="projectDescription" required></textarea>
-
+  <div class="form-group">
+    <label for="projectDescription">Project Description:</label>
+    <div class="input-container">
+      <i class="fas fa-pen"></i>
+      <textarea id="projectDescription" formControlName="projectDescription" required></textarea>
+    </div>
+    <div class="error-message" *ngIf="projectForm.get('projectDescription')?.invalid && projectForm.get('projectDescription')?.touched">
+      Project description is required
+    </div>
   </div>
 
-  <div>
-    <label >Start Date:</label>
-    <input formControlName="projectStartDate" type="date" required>
-
+  <div class="form-group">
+    <label for="projectStartDate">Start Date:</label>
+    <div class="input-container">
+      <i class="fas fa-calendar-alt"></i>
+      <input id="projectStartDate" formControlName="projectStartDate" type="date" required>
+    </div>
+    <div class="error-message" *ngIf="projectForm.get('projectStartDate')?.invalid && projectForm.get('projectStartDate')?.touched">
+      Start date is required
+    </div>
   </div>
 
-  <div>
-    <label >End Date:</label>
-    <input formControlName="projectEndDate" type="date" required>
-
+  <div class="form-group">
+    <label for="projectEndDate">End Date:</label>
+    <div class="input-container">
+      <i class="fas fa-calendar-check"></i>
+      <input id="projectEndDate" formControlName="projectEndDate" type="date" required>
+    </div>
+    <div class="error-message" *ngIf="projectForm.get('projectEndDate')?.invalid && projectForm.get('projectEndDate')?.touched">
+      End date is required
+    </div>
   </div>
 
-  <button type="submit">Submit</button>
+  <button type="submit" [disabled]="projectForm.invalid">Submit</button>
 </form>
+
+</div>

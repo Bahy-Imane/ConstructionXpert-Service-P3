@@ -1,29 +1,57 @@
+<div class="equipment-list-container">
+  <div class="header">
+    <span class="list-title">Project List</span>
+    <button mat-button class="btn-add" (click)="addProject()">Add Project</button>
+  </div>
 
-<div class="container">
-  <button (click)="addProject()">add</button>
-  <table>
-    <thead>
-    <tr>
-      <th>ID</th>
-      <th>Name</th>
-      <th>Description</th>
-      <th>Start Date</th>
-      <th>End Date</th>
-      <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let project of projects">
-      <td>{{ project.projectId }}</td>
-      <td>{{ project.projectName }}</td>
-      <td>{{ project.projectDescription }}</td>
-      <td>{{ project.projectStartDate | date}}</td>
-      <td>{{ project.projectEndDate | date}}</td>
-      <td>
-        <button (click)="editProject(project.projectId)">Edit</button>
-        <button (click)="deleteProject(project.projectId)">Delete</button>
+  <table mat-table [dataSource]="projects" class="mat-elevation-z8">
+    <!-- ID Column -->
+    <ng-container matColumnDef="projectId">
+      <th mat-header-cell *matHeaderCellDef> ID </th>
+      <td mat-cell *matCellDef="let project"> {{project.projectId}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="projectName">
+      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <td mat-cell *matCellDef="let project"> {{project.projectName}} </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="projectDescription">
+      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <td mat-cell *matCellDef="let project"> {{project.projectDescription}} </td>
+    </ng-container>
+
+    <!-- Start Date Column -->
+    <ng-container matColumnDef="projectStartDate">
+      <th mat-header-cell *matHeaderCellDef> Start Date </th>
+      <td mat-cell *matCellDef="let project"> {{project.projectStartDate | date}} </td>
+    </ng-container>
+
+    <!-- End Date Column -->
+    <ng-container matColumnDef="projectEndDate">
+      <th mat-header-cell *matHeaderCellDef> End Date </th>
+      <td mat-cell *matCellDef="let project"> {{project.projectEndDate | date}} </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let project">
+        <div class="card-actions">
+          <button mat-button class="btn btn-edit" (click)="editProject(project.projectId)">
+            <i class="fas fa-edit"></i> Edit
+          </button>
+          <button mat-button class="btn btn-delete" (click)="deleteProject(project.projectId)">
+            <i class="fas fa-trash"></i> Delete
+          </button>
+        </div>
       </td>
-    </tr>
-    </tbody>
+    </ng-container>
+
+    <!-- Table Header and Row Declarations -->
+    <tr mat-header-row *matHeaderRowDef="['projectId', 'projectName', 'projectDescription', 'projectStartDate', 'projectEndDate', 'actions']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['projectId', 'projectName', 'projectDescription', 'projectStartDate', 'projectEndDate', 'actions'];"></tr>
   </table>
 </div>

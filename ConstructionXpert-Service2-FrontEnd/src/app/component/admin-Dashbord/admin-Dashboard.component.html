@@ -1,0 +1,35 @@
+<div class="sidebar">
+  <div class="sidebar-header">
+  </div>
+  <ul class="nav flex-column">
+
+    <a class="nav-item" (click)="onSelect('dashboard')">
+      <li routerLink="/admin-dashboard/dashboard" routerLinkActive="active" class="nav-link">
+        <i class="fas fa-users"></i> Dashboard
+      </li>
+    </a>
+    <a class="nav-item" (click)="onSelect('projects')">
+      <li routerLink="/admin-dashboard/projects" routerLinkActive="active" class="nav-link">
+        <i class="fas fa-users"></i> Projects
+      </li>
+    </a>
+
+    <a class="nav-item" (click)="onSelect('tasks')">
+      <li routerLink="/admin-dashboard/tasks" routerLinkActive="active" class="nav-link">
+        <i class="fas fa-user-cog"></i> Tasks
+      </li>
+    </a>
+
+    <a class="nav-item" (click)="onSelect('resources')">
+      <li routerLink="/admin-dashboard/resources" routerLinkActive="active" class="nav-link">
+        <i class="fas fa-tools"></i> Resources
+      </li>
+    </a>
+  </ul>
+
+  <div *ngIf="activeSection === 'dashboard'" class="sub-menu">
+    <p>Projects</p>
+  </div>
+
+  <router-outlet></router-outlet>
+</div>

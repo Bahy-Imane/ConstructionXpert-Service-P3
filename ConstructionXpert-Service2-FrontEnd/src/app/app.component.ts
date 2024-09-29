@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
+import {Component, inject} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 import {HomeComponent} from "./component/home/home.component";
 import {ProjectListComponent} from "./component/project/project-list/project-list.component";
 import {FooterComponent} from "./component/footer/footer.component";
 import {HeaderComponent} from "./component/header/header.component";
+import { AuthService } from "./core/services/auth-service";
 
 
 @Component({
@@ -16,4 +17,7 @@ import {HeaderComponent} from "./component/header/header.component";
 })
 export class AppComponent {
   title = 'ConstructionXpert-Service2-FrontEnd';
+
+constructor(private authService: AuthService) {
+}
 }

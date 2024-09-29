@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import {NgOptimizedImage} from "@angular/common";
+import {NgIf, NgOptimizedImage} from "@angular/common";
 import {RouterLink} from "@angular/router";
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatButton} from "@angular/material/button";
+import {AuthService} from "../../core/services/auth-service";
+
 
 @Component({
   selector: 'app-header',
@@ -11,11 +13,13 @@ import {MatButton} from "@angular/material/button";
     NgOptimizedImage,
     RouterLink,
     MatToolbar,
-    MatButton
+    MatButton,
+    NgIf
   ],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
 
+  constructor(public _authService: AuthService) {}
 }

@@ -8,6 +8,8 @@ import {Role} from "../enums/role";
 import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
+import {Router} from "@angular/router";
+
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class AuthService {
 
   private baseUrl = 'http://localhost:8888/USER-SERVICE/api/auth';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient , private router : Router) { }
 
 
   SignUp(customerDTO: CustomerDto): Observable<User> {
@@ -33,7 +35,7 @@ export class AuthService {
     return this.http.post<LoginResponse>(`${this.baseUrl}/login`, loginUserDto);
   }
 
-  isLoggedIn(): boolean {
+  isLoggedIn() {
     return !!localStorage.getItem('token');
   }
 
@@ -47,7 +49,9 @@ export class AuthService {
     return null;
   }
 
+
   logout(): void {
     localStorage.removeItem('token');
+    this.router.navigate(['/home']);
   }
 }

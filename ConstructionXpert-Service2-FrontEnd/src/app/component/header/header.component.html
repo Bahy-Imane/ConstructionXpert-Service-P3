@@ -10,8 +10,10 @@
       <li><a routerLink="/contact">Contact</a></li>
     </ul>
     <div class="nav-buttons">
-      <a routerLink="/login" class="login-btn">Log In</a>
-      <a routerLink="/signUp" class="signup-btn">Sign Up</a>
+      <a *ngIf="!_authService.isLoggedIn()" routerLink="/login" class="login-btn">Log In</a>
+      <a *ngIf="!_authService.isLoggedIn()" routerLink="/signUp" class="signup-btn">Sign Up</a>
+      <a style="cursor: pointer;" *ngIf="_authService.isLoggedIn()" (click)="_authService.logout()" class="signup-btn">Log Out</a>
     </div>
+
   </nav>
 </header>

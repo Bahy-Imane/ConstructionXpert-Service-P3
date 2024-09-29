@@ -10,24 +10,45 @@ import {LoginComponent} from "./component/login/login.component";
 import {Role} from "./core/enums/role";
 import {RoleGuard} from "./core/services/role-guard";
 import {AuthGuard} from "./core/services/auth-guard";
-import {AdminDashboardComponent} from "./component/admin-dashboard/admin-dashboard.component";
 import {CustomerDashboardComponent} from "./component/customer-dashboard/customer-dashboard.component";
 
 import {SignUpComponent} from "./component/sign-up/sign-up.component";
 import {ProjectListComponent} from "./component/project/project-list/project-list.component";
 import {ProjectFormComponent} from "./component/project/project-form/project-form.component";
 import {ResourceTestComponent} from "./component/resource/resource-test/resource-test.component";
+import {AdminDashboardComponent} from "./component/admin-Dashbord/admin-Dashboard.component";
+import {DashboardComponent} from "./component/dashboard/dashboard.component";
 
 
 export const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: 'home', component: HomeComponent },
   { path: 'login', component: LoginComponent },
   { path: 'signUp', component: SignUpComponent},
   {
     path: 'admin-dashboard',
     component: AdminDashboardComponent,
     canActivate: [AuthGuard, RoleGuard],
-    data: { expectedRole: Role.ADMIN }
+    data: { expectedRole: Role.ADMIN },
+    children:[
+      {path: 'dashboard' , component : DashboardComponent},
+      {path:'projects', component:ProjectListComponent},
+      {path:'add', component:ProjectFormComponent},
+      {path:'edit/:id', component:ProjectFormComponent},
+
+
+      {path:'tasks', component:TaskeListComponent},
+      {path:'addTask', component:TaskeFormComponent},
+      {path:'editTask/:id', component:TaskeFormComponent},
+      //{path:'', component:TaskeListComponent},
+
+      {path:'resources', component:ResourceListComponent},
+      {path:'addResource', component:ResourceFormComponent},
+      {path:'editResource/:id', component:ResourceFormComponent},
+      //{path:'res', component:ResourceListComponent},
+
+
+      {path:'test', component:ResourceTestComponent},
+    ]
   },
   {
     path: 'customer-dashboard',
@@ -36,22 +57,6 @@ export const routes: Routes = [
     data: { expectedRole: Role.CUSTOMER }
   },
 
-  {path:'projects', component:ProjectListComponent},
-  {path:'add', component:ProjectFormComponent},
-  {path:'edit/:id', component:ProjectFormComponent},
 
-
-  {path:'tasks', component:TaskeListComponent},
-  {path:'addTask', component:TaskeFormComponent},
-  {path:'editTask/:id', component:TaskeFormComponent},
-  {path:'', component:TaskeListComponent},
-
-  {path:'resources', component:ResourceListComponent},
-  {path:'addResource', component:ResourceFormComponent},
-  {path:'editResource/:id', component:ResourceFormComponent},
-  {path:'', component:ResourceListComponent},
-
-
-  {path:'test', component:ResourceTestComponent},
 
 ];

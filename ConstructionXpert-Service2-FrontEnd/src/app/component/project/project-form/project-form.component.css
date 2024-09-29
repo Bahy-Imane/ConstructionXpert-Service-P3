@@ -1,78 +1,88 @@
-/* تنسيق الحاوية العامة للعناصر */
-.container{
-  margin-top: 80px;
+.cn{
+  margin-top: 50px;
 }
-
 form {
-  max-width: 600px;
+  max-width: 700px;
   margin: 0 auto;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 
-/* تنسيق الحقول */
-div {
-  margin-bottom: 15px;
-}
+  .form-group {
+    margin-bottom: 20px;
+  }
 
-label {
-  display: block;
-  font-weight: bold;
-  margin-bottom: 5px;
-  color: #333;
-}
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+  }
 
-input[type="text"],
-input[type="date"],
-textarea {
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
+  .input-container {
+    position: relative;
 
-input[type="text"]:focus,
-input[type="date"]:focus,
-textarea:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
-}
+    i {
+      position: absolute;
+      left: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #3498db;
+      font-size: 18px;
+      pointer-events: none;
+    }
 
-/* تنسيق textarea */
-textarea {
-  min-height: 100px;
-  resize: vertical;
-}
+    input[type="text"], input[type="date"], textarea {
+      width: 100%;
+      padding: 12px 12px 12px 40px; /* Adjust padding to fit icon */
+      border: 1px solid #dcdcdc;
+      border-radius: 6px;
+      font-size: 16px;
+      box-sizing: border-box;
+      transition: border-color 0.3s ease;
 
-/* تنسيق الرسائل */
-small {
-  color: red;
-  font-size: 12px;
-}
+      &:focus {
+        border-color: #3498db;
+        outline: none;
+      }
+    }
 
-/* تنسيق الزر */
-button {
-  display: inline-block;
-  padding: 10px 20px;
-  font-size: 16px;
-  color: #fff;
-  background-color: #28a745;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
+    textarea {
+      height: 120px;
+      resize: vertical;
+    }
+  }
 
-button:hover {
-  background-color: #218838;
-}
+  .error-message {
+    color: #e74c3c;
+    font-size: 13px;
+    margin-top: 5px;
+  }
 
-button:active {
-  background-color: #1e7e34;
-  transform: scale(0.98);
+  button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+      background-color: #2980b9;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+
+    &:disabled {
+      background-color: #bdc3c7;
+      cursor: not-allowed;
+    }
+  }
 }

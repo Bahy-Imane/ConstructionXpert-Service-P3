@@ -3,20 +3,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 80vh;
   background-color: #f4f4f9;
   padding: 2rem;
+  margin-top: 9vh;
+  padding-bottom: 10vh;
 }
 
 /* Contenu contenant le formulaire et l'image */
 .signup-content {
   display: flex;
-  justify-content: space-around; /* Espace autour de l'image et du formulaire */
-  background-color: white;
+  justify-content: end; /* Espace autour de l'image et du formulaire */
+  background-image: url("/assets/Image/pexels-valentinantonucci-860963 (1).jpg");
+  background-size: cover; /* L'image remplit tout le conteneur */
+  background-position: center; /* Centre l'image */
+  background-repeat: no-repeat; /* Évite la répétition de l'image */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
   border-radius: 12px;
   max-width: 900px;
   width: 100%;
+  padding: 5px; /* Ajoutez du padding si nécessaire pour espacer le contenu */
 }
 
 /* Image du formulaire */
@@ -45,14 +51,14 @@
 
 /* Groupe de champs du formulaire */
 .form-group {
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.75rem; /* Réduction de l'espace entre les inputs */
 }
 
 .form-group label {
   display: block;
   font-size: 1rem;
   color: #333;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.25rem; /* Réduction de l'espace entre le label et l'input */
 }
 
 .form-group input {

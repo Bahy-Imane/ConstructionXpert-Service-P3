@@ -60,12 +60,12 @@ export class ProjectFormComponent implements OnInit{
 
   loadProject(projectId: number) {
     this.projectService.getProjectById(projectId).subscribe((project)=>{
-     this.projectForm.patchValue({
-       projectName:project.projectName,
-       projectDescription:project.projectDescription,
-       projectStartDate:project.projectStartDate,
-       projectEndDate:project.projectEndDate
-     })
+      this.projectForm.patchValue({
+        projectName:project.projectName,
+        projectDescription:project.projectDescription,
+        projectStartDate:project.projectStartDate,
+        projectEndDate:project.projectEndDate
+      })
     })
 
   }
