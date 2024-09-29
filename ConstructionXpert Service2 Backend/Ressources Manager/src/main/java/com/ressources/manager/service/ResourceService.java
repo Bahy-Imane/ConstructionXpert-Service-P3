@@ -17,6 +17,8 @@ public class ResourceService {
 
     private final TaskClient taskClient;
 
+    private Sort.Direction sortDirection;
+
     public ResourceService(ResourceRepository resourceRepository, TaskClient taskClient) {
         this.resourceRepository = resourceRepository;
         this.taskClient = taskClient;
@@ -53,8 +55,13 @@ public class ResourceService {
         resourceRepository.deleteById(resourceId);
     }
 
-    public List<Resource> findResourcesWithSorting(String field){
-        return resourceRepository.findAll(Sort.by(field).descending());
+    public List<Resource> findResourcesWithSorting(String field , String direction){
+        try {
+            sortDirection = Sort.Direction.valueOf(direction.toUpperCase());
+        } catch (IllegalArgumentException e) {
+            sortDirection = Sort.Direction.ASC;
+        }
+        return resourceRepository.findAll(Sort.by(sortDirection,field));
     }
 
     public Page<Resource> findResourcesWithPagination(int offset, int pageSize){

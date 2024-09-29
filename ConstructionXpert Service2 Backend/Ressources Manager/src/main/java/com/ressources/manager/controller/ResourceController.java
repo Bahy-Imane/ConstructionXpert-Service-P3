@@ -52,10 +52,15 @@ public class ResourceController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-    @GetMapping("/sorting/{field}")
-    public ResponseEntity<List<Resource>> getResourcesWithSorting(@PathVariable("field") String field){
-        List<Resource> resources = resourceService.findResourcesWithSorting(field);
-        return new ResponseEntity<>(resources, HttpStatus.OK);
+    @GetMapping("/sorting/{field}/{direction}")
+    public ResponseEntity<List<Resource>> getResourcesSorted(
+            @PathVariable String field,
+            @PathVariable String direction) {
+
+
+        List<Resource> sortedResources = resourceService.findResourcesWithSorting(field, direction);
+
+        return new ResponseEntity<>(sortedResources, HttpStatus.OK);
     }
 
     @GetMapping("/pagination/{offset}/{pageSize}")

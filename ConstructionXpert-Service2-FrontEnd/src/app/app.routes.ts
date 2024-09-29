@@ -16,6 +16,7 @@ import {CustomerDashboardComponent} from "./component/customer-dashboard/custome
 import {SignUpComponent} from "./component/sign-up/sign-up.component";
 import {ProjectListComponent} from "./component/project/project-list/project-list.component";
 import {ProjectFormComponent} from "./component/project/project-form/project-form.component";
+import {ResourceTestComponent} from "./component/resource/resource-test/resource-test.component";
 
 
 export const routes: Routes = [
@@ -48,5 +49,9 @@ export const routes: Routes = [
   {path:'resources', component:ResourceListComponent},
   {path:'addResource', component:ResourceFormComponent},
   {path:'editResource/:id', component:ResourceFormComponent},
-  {path:'', component:ResourceListComponent}
+  {path:'', component:ResourceListComponent},
+
+
+  {path:'test', component:ResourceTestComponent},
+
 ];
