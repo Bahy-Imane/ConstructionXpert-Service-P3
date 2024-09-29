@@ -7,7 +7,7 @@ import {Resource} from "../model/resource.model";
   providedIn: 'root'
 })
 export class ResourceService {
-  private apiUrl = 'http://localhost:8083/api/resources';
+  private apiUrl = 'http://localhost:8888/RESOURCES-MANAGER/api/resources';
 
   constructor(private http: HttpClient) { }
 

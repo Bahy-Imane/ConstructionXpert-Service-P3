@@ -8,7 +8,7 @@ import {User} from "../model/user.model";
 })
 export class UserService {
 
-  private baseUrl = 'http://localhost:8080/api/users';  // Replace with your API URL
+  private baseUrl = 'http://localhost:8888/USER-SERVICE/api/users';  // Replace with your API URL
 
   constructor(private http: HttpClient) { }
 

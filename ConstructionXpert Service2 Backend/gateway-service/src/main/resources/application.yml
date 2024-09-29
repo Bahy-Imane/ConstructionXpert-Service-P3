@@ -10,13 +10,41 @@ spring:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/api/auth/**  # Redirige les requêtes qui commencent par /api/auth/ vers USER-SERVICE
+            - Path=/api/auth/**
           filters:
-            - StripPrefix=1  # Enlève le premier segment du chemin, utile si le service attend une URL sans `/api/auth`
+            - StripPrefix=1
+
+        - id: projects-manager
+          uri: lb://PROJECTS-MANAGER
+          predicates:
+            - Path=/api/projects/**
+          filters:
+            - StripPrefix=1
+
+        - id: resources-manager
+          uri: lb://RESOURCES-MANAGER
+          predicates:
+            - Path=/api/resources/**
+          filters:
+            - StripPrefix=1
+
+        - id: tasks-manager
+          uri: lb://TASKS-MANAGER
+          predicates:
+            - Path=/api/tasks/**
+          filters:
+            - StripPrefix=1
+
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/users/**
+          filters:
+            - StripPrefix=1
 
   discovery:
     locator:
-      enabled: true  # Active la découverte des services via Eureka
+      enabled: true
 
 eureka:
   instance:
